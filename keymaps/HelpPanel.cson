@@ -10,6 +10,3 @@
 
 'atom-workspace':
   'ctrl-shift-space': 'HelpPanel:toggle'
-
-'.HelpPane':
-    'esc': 'core:cancel'
