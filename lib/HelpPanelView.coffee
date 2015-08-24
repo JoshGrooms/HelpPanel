@@ -1,7 +1,6 @@
 module.exports = class HelpPanelView
 
     constructor: (serializedState) ->
-        # Create root element
         @HelpPanel = document.createElement('div')
         @HelpPanel.classList.add('HelpPanel', 'inset-panel', 'padded')
         @ModalPanel = atom.workspace.addModalPanel(item: @HelpPanel, visible: false)
@@ -31,12 +30,14 @@ module.exports = class HelpPanelView
     SetText: (text) ->
         @HelpPanel.textContent = text
 
-    isVisible: ->
-        @ModalPanel.isVisible()
+    IsVisible: ->
+        return @ModalPanel.isVisible()
 
+    # HIDE - Hides the help panel user interface.
     Hide: ->
         @ModalPanel.hide()
 
+    # SHOW - Shows the help panel user interface.
     Show: ->
         @ModalPanel.show()
 
