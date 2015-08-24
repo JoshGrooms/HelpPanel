@@ -11,6 +11,7 @@ HelpText                = require './HelpText'
 
 # HELPPANEL -
 module.exports = HelpPanel =
+    IsVisible:          false
     Subscriptions:      null
     UI:                 null
 
@@ -39,15 +40,21 @@ module.exports = HelpPanel =
     #   SYNTAX:
     #       @Toggle()
     Toggle: ->
-        if @UI.isVisible()
-            @UI.Hide()
-        else
-            word = @Editor.GetSelection()
-            if (word.length == 0) then word = @Editor.SelectNearbyWord()
-            help = new HelpText(@Editor, word)
+        if @IsVisible then @Hide() else @Show()
 
-            @UI.SetText(help.Text)
-            @UI.Show()
+    Hide: ->
+        @UI.Hide()
+        @IsVisible = false
+
+    Show: ->
+        word = @Editor.GetSelection()
+        if (word.length == 0) then word = @Editor.SelectNearbyWord()
+        help = new HelpText(@Editor, word)
+
+        @UI.SetText(help.Text)
+        @UI.Show()
+        @IsVisible = true
+
 
     # SELECTWORD - Selects the complete word surrounding or immediately adjacent to the active editor cursor position.
     #
