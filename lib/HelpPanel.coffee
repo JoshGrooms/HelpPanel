@@ -11,7 +11,6 @@ HelpText                = require './HelpText'
 
 # HELPPANEL -
 module.exports = HelpPanel =
-    IsVisible:          false
     Subscriptions:      null
     UI:                 null
 
@@ -32,7 +31,7 @@ module.exports = HelpPanel =
     serialize: ->
         HelpViewState: @UI.serialize()
 
-    # TOGGLE - Toggles the visibility of the help pane on or off.
+    # TOGGLE - Toggles the visibility of the help panel on or off.
     #
     #   This function serves as the callback when the keyboard shortcut for the Help Panel package is invoked. It sets the
     #   panel containing documentation text to either visible or invisible, depending on the panel's previous state.
@@ -40,12 +39,19 @@ module.exports = HelpPanel =
     #   SYNTAX:
     #       @Toggle()
     Toggle: ->
-        if @IsVisible then @Hide() else @Show()
+        if @UI.IsVisible() then @Hide() else @Show()
 
+    # HIDE - Hides the help panel.
+    #
+    #   SYNTAX:
+    #       @Hide()
     Hide: ->
         @UI.Hide()
-        @IsVisible = false
 
+    # SHOW - Shows the help panel.
+    #
+    #   SYNTAX:
+    #       @Show()
     Show: ->
         word = @Editor.GetSelection()
         if (word.length == 0) then word = @Editor.SelectNearbyWord()
@@ -53,7 +59,6 @@ module.exports = HelpPanel =
 
         @UI.SetText(help.Text)
         @UI.Show()
-        @IsVisible = true
 
 
     # SELECTWORD - Selects the complete word surrounding or immediately adjacent to the active editor cursor position.
