@@ -10,7 +10,7 @@ module.exports = RXP =
             return ///
                     (
                         [^\n]* #{commentOpen} \s* \b#{docStartWord}\b .* \r?\n
-                        (?: ^\s* #{commentOpen} .* \r?\n )*
+                        (?: ^[^\n]* #{commentOpen} .* \r?\n )*
                     )
                     (?: (.(?!#{commentOpen}))* \b#{word}\b )
                   ///m
@@ -34,7 +34,7 @@ module.exports = RXP =
                     (?: (.(?!#{commentOpen}))* \b#{word}\b .* \r?\n )
                     (
                         [^\n]* #{commentOpen} \s* \b#{docStartWord}\b .* \r?\n
-                        (?: ^\s* #{commentOpen} .* \r?\n )*
+                        (?: ^[^\n]* #{commentOpen} .* \r?\n )*
                     )
                    ///m
         else
