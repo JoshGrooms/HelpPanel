@@ -7,7 +7,7 @@
   "activationCommands":  {
     "atom-workspace": "HelpPanel:toggle"
   },
-  "repository": "https://github.com/atom/HelpPanel",
+  "repository": "https://github.com/atom/HelpPanel.git",
   "license": "MIT",
   "engines":  {
     "atom": ">=0.174.0 <2.0.0"
